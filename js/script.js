@@ -1,6 +1,7 @@
 import {  deleteProductByid, editPizzas, getCateg, getProductByCat, postNewPizzas  } from "./service.js";
 
 const categList = document.getElementById('categList')
+const categListmob = document.querySelector('.categListmob')
 let cards = document.getElementById('cards')
 const main1 = document.getElementById('main1')
 const main2 = document.getElementById('main2')
@@ -33,6 +34,7 @@ const notyf = new Notyf({
   })
 let categData 
 
+console.log(categListmob);
 
 async function printCateg(){
     categData = await getCateg()
@@ -43,6 +45,9 @@ async function printCateg(){
           categList.innerHTML += `<li class="flex" ${item.slug !='kampaniyalar'? onclckEvent : printCards  } >
                                         <a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 ">${item.slug}</a>
                                     </li>`
+        categListmob.innerHTML += `<li class="flex" ${item.slug !='kampaniyalar'? onclckEvent : printCards  } >
+                                    <a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 ">${item.slug}</a>
+                                </li>`
     })
     
 }
