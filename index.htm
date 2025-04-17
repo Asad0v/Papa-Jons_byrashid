@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="output.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="flex justify-between text-[#0F7A5B] text-md md:text-lg py-3 px-5 border-b-2 border-[#e7e2e2]">
+            <div class="md:flex gap-3 hidden ">
+                <h2>Restoranlar</h2>
+                <h2>PapaBonus</h2>
+            </div>
+            <div class="flex gap-3">
+                <div class="flex justify-center items-center">
+                    <img class="h-[25px] w-[25px]" src="./img/flag_az.png" alt="">
+                    <h2>Azərbaycanca</h2>
+                </div>
+                <h2 class="font-semibold">Giriş/Qeydiyyat</h2>
+            </div>
+        </div>
+        <div onclick="openMobNav()" class="p-2 md:hidden">
+            <i class="fa-solid fa-bars text-3xl "></i>
+        </div>
+        <div class="bg-[#AD0F14] hidden md:flex">
+            <div class="container mx-auto px-8 flex justify-evenly items-center text-white font-semibold py-5 gap-[3%]">
+                <a href="./index.htm"><img class="lg:w-[120px] w-[100px]" src="./img/pj_logo.png" alt=""></a>
+                <ul id="categList" class="items-stretch hidden space-x-3 lg:flex">
+                    <!-- <a href="./index.htm"><button href="" class="uppercase">Kampaniyalar</button></a>
+                    <a href="./papdias.htm"><button href="" class="uppercase">papadies</button></a>
+                    <a href="./pizzas.htm"><button href="" class="uppercase">pizza</button></a>
+                    <a href="./qalyanaltilar.htm"><button href="" class="uppercase">qəlyanaltılar</button></a>
+                    <a href="./salat.htm"><button href="" class="uppercase">salat</button></a>
+                    <a href="./pasta.htm"><button href="" class="uppercase">pasta</button></a>
+                    <a href="./sous.htm"><button href="" class="uppercase">souslar</button></a>
+                    <a href="./icki.htm"><button href="" class="uppercase">içki</button></a>
+                    <a href="./desert.htm"><button href="" class="uppercase">desertlər</button></a> -->
+                </ul>
+            </div>
+        </div>
+        <div class="bg-[#AD0F14] flex flex-col justify-center items-center gap-5 p-5 md:hidden">
+            <img class="w-[100px]" src="./img/pj_logo.png" alt="">
+        </div>
+        <div id="mobNav"
+            class=" flex-col gap-[20px] bg-[#AD0F14]  text-white text-md font-semibold text-center hidden ">
+            <button href="" class="uppercase">Kampaniyalar</button>
+            <button href="" class="uppercase">papadies</button>
+            <button  class="uppercase">pizza</button>
+            <button href="" class="uppercase">qəlyanaltılar</button>
+            <button href="" class="uppercase">salat</button>
+            <button href="" class="uppercase">pasta</button>
+            <button href="" class="uppercase">souslar</button>
+            <button href="" class="uppercase">içki</button>
+            <button href="" class="uppercase">desertlər</button>
+        </div>
+    </header>
+    <div id="inputs" class="flex flex-col w-[500px] m-auto gap-2 bg-slate-600 p-5 rounded-xl">
+        <input class=" border p-2 rounded-lg bg-white" type="text" placeholder="title">
+        <input class=" border p-2 rounded-lg bg-white" type="text" placeholder="composition">
+        <input class=" border p-2 rounded-lg bg-white" type="text" placeholder="img">
+        <input class=" border p-2 rounded-lg bg-white" type="number" placeholder="price">
+        <input class=" border p-2 rounded-lg bg-white" type="text" placeholder="category">
+        <button onclick="createPizza()" class="border-2 shadow-lg p-2 rounded-xl bg-[#FF3F6F] text-white  border-[#fff]   shadow-[#222]">Yemek & icmek Elave Et</button>
+        <button onclick="updatePizza()" class="border-2 shadow-lg p-2 rounded-xl bg-[#0F9675] text-white  border-[#333]   shadow-[#222]">Yemek & icmek yenile</button>
+    </div>
+    <button id="elaveEt" class="glow-on-hover" type="button">* Elave Et *</button>
+    <main class="text-center">
+          
+          
+        
+        <div id="main1" class="bg-[#F1F1F1] flex justify-center items-center container font-bold gap-2 py-4 w-[93%] m-auto mt-8">
+            <h2 class=" text-2xl">Promo kodunuz var?</h2>
+            <h2 class="text-[#0F9675] text-2xl">Endirimdən istifadə edin!</h2>
+            <div class="flex justify-center items-center gap-3 ">
+                <input class="border-[#0F9675] border-2 rounded-md p-2" type="text" placeholder="promo kodu daxil edin">
+                <button class="bg-[#0F9675] text-white rounded-md p-2 border-[#333] border-2">OK</button>
+            </div>
+        </div>
+        <div id="main2" class="mt-8">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/slider1.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/slider2.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/slider3.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/slider4.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/slider5.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/slider6.jpg" alt="">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="flex justify-center items-center gap-3 py-5 flex-wrap" id="cards"></div>
+        
+    </main>
+    <footer>
+        <div class="bg-[#AD0F14] px-5 py-3 flex justify-between">
+            <h2 class="text-white"> &copy; PJ-byrashid 2025</h2>
+            <div class="text-[#363636] hidden md:flex text-[1.3em] font-semibold gap-[15px]">
+                <a href="">Haqqımızda</a>
+                <a href="">Sual və Cavab</a>
+                <a href="">Karyera</a>
+                <a href="">Xəmir</a>
+                <a href="">Papa Talk - Şərtlər və Qaydalar</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module">
+        import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+        var swiper = new Swiper(".mySwiper", {
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+            },
+            loop: true,
+            // mousewheel: true,
+            keyboard: true,
+            autoplay: {
+                delay: 2000, // 3 saniyədən bir dönəcək
+                disableOnInteraction: false, // istifadəçi müdaxilə etsə də dönməyə davam etsin
+            },
+        });
+        
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+        <script src="js/script.js" type="module" ></script>
+</body>
+
+</html>

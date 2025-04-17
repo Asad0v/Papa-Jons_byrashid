@@ -1,0 +1,92 @@
+
+    /* body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    } */
+
+    .swiper {
+      width: 95%;
+      height: 50vh;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .glow-on-hover {
+      width: 220px;
+      height: 50px;
+      border: none;
+      outline: none;
+      color: #000;
+      background: linear-gradient(45deg, #0F9675, #09afb8, #2286a8,#2232a8,#FF3F6F, #ff7292, #fca9b6, #b8e7dc, #52c4a1, #FF3F6F, #ff7292, #fca9b6, #b8e7dc, #52c4a1 );
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      border-radius: 10px;
+      font: bold 1.3em Arial, sans-serif;
+  }
+  
+  .glow-on-hover:before {
+      content: '';
+      background: linear-gradient(45deg, #FF3F6F, #ff7292, #fca9b6, #b8e7dc, #52c4a1, #0F9675, #09afb8, #2286a8,#2232a8,#FF3F6F, #ff7292, #fca9b6, #b8e7dc, #52c4a1);
+
+      position: absolute;
+      top: -4px;
+      left:-4px;
+      background-size: 600%;
+      z-index: -1;
+      filter: blur(5px);
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      animation: glowing 20s linear infinite;
+      opacity: 0;
+      transition: opacity .3s ease-in-out;
+      border-radius: 10px;
+  }
+  
+  .glow-on-hover:active {
+      color: #000
+  }
+  
+  .glow-on-hover:active:after {
+      background: transparent;
+  }
+  
+  .glow-on-hover:hover:before {
+      opacity: 1;
+  }
+  
+  .glow-on-hover:after {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #0F9675, #09afb8, #2286a8 #fca9b6, #b8e7dc, #52c4a1, #FF3F6F, #ff7292, #fca9b6, #b8e7dc, #52c4a1 );
+      left: 0;
+      top: 0;
+      border-radius: 10px;
+      animation: glowing 20s linear infinite;
+  }
+  
+  @keyframes glowing {
+      0% { background-position: 0 0; }
+      50% { background-position: 400% 0; }
+      100% { background-position: 0 0; }
+  }
